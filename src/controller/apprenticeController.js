@@ -14,8 +14,8 @@ function getApprentice(req, res) {
 };
 
 function postApprentice(req, res) {
-    const { apprentice_name, id, document, document_type, last_name_apprentice, phone, gender } = req.body
-    validator.addApprentice(apprentice_name, id, document, document_type, last_name_apprentice, phone, gender)
+    const { apprentice_name, document, document_type, last_name_apprentice, phone, gender } = req.body
+    validator.addApprentice(apprentice_name, document, document_type, last_name_apprentice, phone, gender)
         .then((apprentice) => {
             response.success(req, res, apprentice, 201)
         })
