@@ -25,8 +25,8 @@ function postApprentice(req, res) {
 };
 
 function putApprentice(req, res) {
-    const { apprentice_name, id, document, document_type, last_name_apprentice, phone, gender } = req.body
-    validator.updateApprentice(req.params.id, apprentice_name, id, document, document_type, last_name_apprentice, phone, gender)
+    const { apprentice_name, document, document_type, last_name_apprentice, phone, gender } = req.body
+    validator.updateApprentice(req.params.id, apprentice_name,  document, document_type, last_name_apprentice, phone, gender)
         .then((data) => {
             response.success(req, res, data, 200);
         })
@@ -47,10 +47,10 @@ function deleteApprentice(req, res) {
 };
 
 function addAttendance(req, res){
-    const { attendance } = req.body
-    validator.updateApprentice(req.params.id, attendance)
+    const { date, attendance_state, news_report} = req.body
+    validator.addAttendance(req.params.id, date, attendance_state, news_report)
         .then((data) => {
-            response.success(req, res, data, 200);
+            response.success(req, res, { data }, 200);
         })
         .catch(err => {
             response.error(req, res, error.ERROR_RESPONSES.intern, 500, err)

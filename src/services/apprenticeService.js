@@ -44,16 +44,16 @@ async function removeApprentice(id) {
     return false;
 };
 
-async function addAttendance(apprenticeId, attendance) {
-    const updatedApprentice = await apprenticeModel.findByIdAndUpdate(
-        apprenticeId,
-        {
-            $push: { attendance_list: attendance },
-        },
-        { new: true }
-    );
-
-    return updatedApprentice;
+async function addAttendance(apprenticeId, date, attendance_state, news_report) {
+    const foundApprentice = await model.findById(apprenticeId);
+    const newAttendance = {
+        date, 
+        attendance_state, 
+        news_report
+    };
+    foundApprentice.attendance_list.push(newAttendance);
+    const addAttendance = await foundApprentice.save();
+    return addAttendance;
 }
 
 module.exports = {

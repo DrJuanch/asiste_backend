@@ -1,7 +1,7 @@
 const service = require('../services/apprenticeService');
 
 async function addApprentice(apprentice_name,  document, document_type, last_name_apprentice, phone, gender) {
-    if (!document_type || !apprentice_name || !password || !phone || !last_name_apprentice || !gender|| !document) {
+    if (!document_type || !apprentice_name || !phone || !last_name_apprentice || !gender|| !document) {
         throw new Error('INVALID DATA');
     }
 
@@ -26,12 +26,12 @@ async function getApprentice(filterApprentice) {
     return await service.getApprentice(filterApprentice)
 }
 
-function updateApprentice(apprentice_name, id, document, document_type, last_name_apprentice, phone, gender) {
+function updateApprentice(id, apprentice_name, document, document_type, last_name_apprentice, phone, gender) {
     return new Promise((resolve, reject) => {
         if (!id) {
             reject("INVALID ID");
         };
-        const result = service.updateApprentice(apprentice_name, id, document, document_type, last_name_apprentice, phone, gender);
+        const result = service.updateApprentice(id, apprentice_name, document, document_type, last_name_apprentice, phone, gender);
         resolve(result);
     });
 };
@@ -55,12 +55,13 @@ function deleteApprentice(id) {
     });
 };
 
-function addAttendance(apprentice_id, attendance) {
+function addAttendance(apprentice_id, date, attendance_state, news_report) {
     return new Promise((resolve, reject) => {
         if (!apprentice_id) {
             reject("INVALID ID");
         };
-        const result = service.addAttendance(apprentice_id, attendance);
+
+        const result = service.addAttendance(apprentice_id, date, attendance_state, news_report);
         resolve(result);
     });
 };

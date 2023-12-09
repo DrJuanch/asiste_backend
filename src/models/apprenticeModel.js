@@ -4,7 +4,7 @@ const attendance_state_enum = ['presente', 'ausente', 'excusa'];
 
 const attendanceSchema = new mongoose.Schema(
     {
-        Date: {
+        date: {
             type: Date,
             required: true
         },
@@ -13,7 +13,7 @@ const attendanceSchema = new mongoose.Schema(
             enum: attendance_state_enum
         },
         news_report:{
-            type: String
+            type: String,
         }
     },
     {
@@ -42,7 +42,7 @@ const apprenticeSchema = new mongoose.Schema(
         gender:{
             type: String
         },
-        attendace_list:[
+        attendance_list:[
             attendanceSchema
         ]
     },
