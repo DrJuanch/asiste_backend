@@ -6,7 +6,9 @@ db.set('strictQuery', true);
 async function dataBaseConnection() {
     console.log('entra');
     const MONGO_URI = process.env.MONGO_URI;
-    await db.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    await db.connect(MONGO_URI, {
+        useNewUrlParser: true, useUnifiedTopology: true,
+    })
         .then(() => console.log('DB connected successfuly'))
         .catch(err => console.error('DB', err));
 }

@@ -24,12 +24,12 @@ async function getCourse(filterCourse) {
     return await service.getCourse(filterCourse)
 }
 
-function updateCourse(course_id, education_level, journey, instructor) {
+function updateCourse(id, course_id, education_level, journey, instructor) {
     return new Promise((resolve, reject) => {
         if (!id) {
             reject("INVALID ID");
         };
-        const result = service.updateCourse(course_id, education_level, journey, instructor);
+        const result = service.updateCourse(id, course_id, education_level, journey, instructor);
         resolve(result);
     });
 };

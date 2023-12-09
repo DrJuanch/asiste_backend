@@ -6,7 +6,7 @@ router.post('/', controller.postCourse);
 router.get('/', controller.getCourse);
 router.put('/:id', controller.putCourse);
 router.delete('/:id', controller.deleteCourse);
-router.put('/añadirAprendiz', controller.addApprentice);
+router.put('/addApprentice/:id', controller.addApprentice);
 
 
 module.exports = router;

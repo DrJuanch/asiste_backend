@@ -54,7 +54,7 @@ async function addAttendance(apprenticeId, date, attendance_state, news_report) 
     foundApprentice.attendance_list.push(newAttendance);
     const addAttendance = await foundApprentice.save();
     return addAttendance;
-}
+};
 
 module.exports = {
     addApprentice,

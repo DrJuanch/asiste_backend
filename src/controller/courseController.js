@@ -28,7 +28,7 @@ function putCourse(req, res) {
     const { course_id, education_level, journey, instructor } = req.body
     validator.updateCourse(req.params.id, course_id, education_level, journey, instructor)
         .then((data) => {
-            response.success(req, res, data, 200);
+            response.success(req, res, { data }, 200);
         })
         .catch(err => {
             response.error(req, res, error.ERROR_RESPONSES.intern, 500, err)
@@ -48,9 +48,9 @@ function deleteCourse(req, res) {
 
 function addApprentice(req, res) {
     const { apprentice_id } = req.body
-    validator.updateCourse(req.params.id, apprentice_id)
+    validator.addApprentice(req.params.id, apprentice_id)
         .then((data) => {
-            response.success(req, res, data, 200);
+            response.success(req, res, { data }, 200);
         })
         .catch(err => {
             response.error(req, res, error.ERROR_RESPONSES.intern, 500, err)

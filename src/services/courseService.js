@@ -6,16 +6,22 @@ async function addCourse(course) {
     await myCourse.save();
 };
 
-function getCourse(filterCourse) {
-    return new Promise((resolve) => {
+async function getCourse(filterCourse) {
+    try {
         let filter = {};
         if (filterCourse !== null) {
-            filter = { course_id: filterCourse }
-        };
-        const course = model.find(filter);
-        resolve(course);
-    });
-};
+            filter = { course_id: filterCourse };
+        }
+
+        const course = await model.find(filter)
+            .populate('instructor')
+            .populate('students_associated');
+
+        return course;
+    } catch (error) {
+        throw new Error('Error al obtener el curso: ' + error.message);
+    }
+}
 
 async function updateCourse(id, course_id, education_level, journey, instructor) {
     const foundCourse = await model.findById(id);
@@ -41,17 +47,12 @@ async function removeCourse(id) {
     return false;
 };
 
-async function addApprentice (id, apprenticeId) {
-    const updatedCourse = await model.findByIdAndUpdate(
-        id,
-        {
-            $push: { students_associated: apprenticeId },
-        },
-        { new: true }
-    );
-
-    return updatedCourse;
-}
+async function addApprentice(courseId, apprenticeId) {
+    const foundApprentice = await model.findById(courseId);
+    foundApprentice.students_associated.push(apprenticeId);
+    const addApprentice = await foundApprentice.save();
+    return addApprentice;
+};
 
 module.exports = {
     addCourse,

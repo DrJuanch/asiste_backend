@@ -3,7 +3,9 @@ const mongoose = require('mongoose');
 const journeyEnum = ['diurna', 'nocturna', 'mixta'];
 const educationLevelEnum = ['técnico', 'tecnólogo'];
 
-const fichaSchema = new mongoose.Schema(
+const schema = mongoose.Schema;
+
+const fichaSchema = new schema(
     {
         course_id:{
             type:Number
@@ -17,13 +19,13 @@ const fichaSchema = new mongoose.Schema(
             enum: journeyEnum
         },
         instructor:{
-            type: mongoose.Schema.Types.ObjectId,
+            type: schema.ObjectId,
             ref: 'Instructor',
             require: true
         },
         students_associated:[
             {
-                type: mongoose.Schema.Types.ObjectId,
+                type: schema.ObjectId,
                 ref: 'Apprentice',
             }
         ]
