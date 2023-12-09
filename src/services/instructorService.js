@@ -9,7 +9,7 @@ async function addInstructor(instructor) {
 function getInstructor(filterInstructor) {
     return new Promise((resolve) => {
         let filter = {};
-        if (filterPerson !== null) {
+        if (filterInstructor !== null) {
             filter = { document: filterInstructor }
         };
         const person = model.find(filter);
