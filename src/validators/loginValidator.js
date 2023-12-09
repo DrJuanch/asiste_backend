@@ -4,12 +4,12 @@ const { ERROR_RESPONSES } = require('../constants');
 
 
 const validateCreate = [
-    check("email")
+    check("instructor_email")
         .exists()
         .not()
         .isEmpty()
         .withMessage(ERROR_RESPONSES.not_found),
-    check("password")
+    check("instructor_password")
         .exists()
         .not()
         .isEmpty()
