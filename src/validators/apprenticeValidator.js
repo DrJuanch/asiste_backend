@@ -1,7 +1,7 @@
 const service = require('../services/apprenticeService');
 
 async function addApprentice(apprentice_name,  document, document_type, last_name_apprentice, phone, gender) {
-    if (!document_type || !email || !apprentice_name || !password || !phone || !last_name_apprentice || !gender|| !document) {
+    if (!document_type || !apprentice_name || !password || !phone || !last_name_apprentice || !gender|| !document) {
         throw new Error('INVALID DATA');
     }
 
